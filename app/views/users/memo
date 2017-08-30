@@ -1,0 +1,5 @@
+showに入れる関連ユーザー
+
+<%= render 'users/related_users', users: @user.find_related_skills %>
+
+<%= render 'users/related_users', users: @user.find_related_interests %>

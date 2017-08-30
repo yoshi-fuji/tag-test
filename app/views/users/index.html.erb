@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Users</h1>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th>画像</th>
+      <th>タイプ</th>
+      <th>担当</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><img src=<%= user.pict_url %> width=150></td>
+        <td><%= render 'users/tag_list', tag_list: user.skill_list %></td>
+        <td><%= render 'users/tag_list', tag_list: user.interest_list %></td>
+        
+        <td><%= user.skill_list.map { |t| link_to t, tag_path(t) }.join(', ').html_safe %></td>
+        <td><%= user.interest_list.map { |t| link_to t, tag_path(t) }.join(', ').html_safe %></td>
+        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+
+<%= link_to 'New User', new_user_path %>／<%= link_to 'All Users', users_path %>
